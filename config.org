@@ -1,0 +1,132 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Mark Smith
+
+With HEAVY reliance on the original [[https://github.com/danielmai/.emacs.d.git][document]] by Daniel Mai.
+
+
+I've been using Emacs on and off since the summer of 2014, and along
+the way I've become accustomed to many different tweaks for it.
+
+This configuration uses the [[https://github.com/jwiegley/use-package][use-package]] package from John Wiegley, which is
+a fantastic way to manage package configurations.  
+
+This file is written in org modeand takes advantage of org babel to strip away 
+everythin in the file except the emacs lisp surrounded by begin and end source tags. 
+
+* Personal information
+
+#+begin_src emacs-lisp
+(setq user-full-name "Mark Smith"
+      user-mail-address "markacsmith@gmail.com")
+#+end_src
+
+
+* Emacs init and tangling this file
+  
+Init.el is always loaded by emacs.  Emacs expects elisp code at a
+minimum the following should be saved into a sepparate file and
+saved as init.el in the home directory ~\ or something similar to; 
+C:\Users\Mark\AppData\Roaming\.emacs.d
+
+** Init file
+
+;;; Set up package
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+;;
+;;
+;; This is the critical part for a new install of emacs
+;;
+;;
+;;; Bootstrap use-package
+;; Install use-package if it's not already installed.
+;; use-package is used to configure the rest of the packages.
+;; The following was copied from the git repo
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; From use-package README
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)
+;; (setq use-package-verbose t)
+(server-start)
+
+;;; Load the config
+(org-babel-load-file (concat user-emacs-directory "config.org"))
+
+
+** Save path for this file after org bable
+
+Set up the customize file to its own separate file, instead of saving
+customize settings in [[file:init.el][init.el]]
+
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
+#+end_src
+
+* Appearence
+
+I like a high contrast dark colour scheme and a san serif mono
+space font, also modified are the opening frame size to fit 
+on my notebook amongst other settings.
+
+** Themes
+
+Cyber punk has a good contrasty appearance they identify org mode as  
+specially-tailored but not Python or Fortran.  The jury is out as yet.
+
+*** Cyperpunk
+
+The [[https://github.com/n3mo/cyberpunk-theme.el][cyberpunk theme]] is dark and colorful.
+
+#+begin_src emacs-lisp
+(use-package cyberpunk-theme
+  :if (window-system)
+  :ensure t
+  :init
+  (progn
+    (load-theme 'cyberpunk t)))
+#+end_src
+
+*** Wheatgrass
+
+A built-in dark theme with good contrast 
+
+#+begin_src emacs-lisp
+(use-package wheatgrass-theme
+  :if (window-system)
+  :ensure t
+  :init
+  (load-theme 'wheatgrass))
+#+end_src
+
+*** Convenient theme functions
+
+#+begin_src emacs-lisp
+(defun switch-theme (theme)
+  "Disables any currently active themes and loads THEME."
+  ;; This interactive call is taken from `load-theme'
+  (interactive
+   (list
+    (intern (completing-read "Load custom theme: "
+                             (mapc 'symbol-name
+                                   (custom-available-themes))))))
+  (let ((enabled-themes custom-enabled-themes))
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme theme t)))
+
+(defun disable-active-themes ()
+  "Disables any currently active themes listed in `custom-enabled-themes'."
+  (interactive)
+  (mapc #'disable-theme custom-enabled-themes))
+
+(bind-key "s-<f12>" 'switch-theme)
+(bind-key "s-<f11>" 'disable-active-themes)
+#+end_src
