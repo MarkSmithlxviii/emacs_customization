@@ -23,12 +23,13 @@ everythin in the file except the emacs lisp surrounded by begin and end source t
 
 * Emacs init and tangling this file
   
+** Init file
+
 Init.el is always loaded by emacs.  Emacs expects elisp code at a
 minimum the following should be saved into a sepparate file and
 saved as init.el in the home directory ~\ or something similar to; 
 C:\Users\Mark\AppData\Roaming\.emacs.d
 
-** Init file
 
 ;;; Set up package
 (require 'package)
@@ -73,14 +74,12 @@ customize settings in [[file:init.el][init.el]]
 
 * Appearence
 
-I like a high contrast dark colour scheme and a san serif mono
-space font, also modified are the opening frame size to fit 
-on my notebook amongst other settings.
 
 ** Themes
 
-Cyber punk has a good contrasty appearance they identify org mode as  
-specially-tailored but not Python or Fortran.  The jury is out as yet.
+I like a high contrast dark colour scheme, Cyber punk has a good contrasty
+appearance they identify org mode as specially-tailored but not Python 
+or Fortran.  The jury is out as yet.
 
 *** Cyperpunk
 
@@ -130,3 +129,26 @@ A built-in dark theme with good contrast
 (bind-key "s-<f12>" 'switch-theme)
 (bind-key "s-<f11>" 'disable-active-themes)
 #+end_src
+
+** Faces (Font)
+I prefer a san serif mono space font. It is easier on tired old eyes.  
+The built in Lucida Console font works fine for me. A height of 143
+corresponds to approximately 14 pt type.
+
+The following was copied directly from a .emacs file created
+by emacs after using the custimize faces menu
+
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+
+#+begin_src emacs-lisp  
+(custom-set-faces
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil
+			 :strike-through nil :overline nil :underline nil
+			 :slant normal :weight normal :height 143 :width normal
+			 :foundry "outline" :family "Lucida Console")))))
+#+end_src
+
+** 
