@@ -20,9 +20,7 @@ everythin in the file except the emacs lisp surrounded by begin and end source t
       user-mail-address "markacsmith@gmail.com")
 #+end_src
 
-
 * Emacs init and tangling this file
-  
 ** Init file
 
 Init.el is always loaded by emacs.  Emacs expects elisp code at a
@@ -61,8 +59,10 @@ C:\Users\Mark\AppData\Roaming\.emacs.d
 ;;; Load the config
 (org-babel-load-file (concat user-emacs-directory "config.org"))
 
-
 ** Save path for this file after org bable
+
+The initialization file (above) is set up to pull all the elisp out of 
+config.org (this file)
 
 Set up the customize file to its own separate file, instead of saving
 customize settings in [[file:init.el][init.el]]
@@ -73,8 +73,6 @@ customize settings in [[file:init.el][init.el]]
 #+end_src
 
 * Appearence
-
-
 ** Themes
 
 I like a high contrast dark colour scheme, Cyber punk has a good contrasty
@@ -151,4 +149,5 @@ by emacs after using the custimize faces menu
 			 :foundry "outline" :family "Lucida Console")))))
 #+end_src
 
-** 
+** Start up and defaults
+
