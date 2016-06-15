@@ -149,5 +149,194 @@ by emacs after using the custimize faces menu
 			 :foundry "outline" :family "Lucida Console")))))
 #+end_src
 
-** Start up and defaults
+** Defaults
 
+Customizations that will always be in effect such as start up frame size
+column mode on etc
+
+#+begin_src emacs-lisp
+
+(custom-set-variables
+ 
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ 
+ ;; I like to know what column I am in as well as the row number
+ 
+ '(column-number-mode t)
+  
+ ;; With the 143 height text the default frame did not fit well on my 
+ ;; 11" notebook screen therefore limit the height of the default frame.
+ 
+ '(default-frame-alist (quote ((height . 27))))
+
+ ;; delete the region when typing, just like as we expect nowadays.
+ (delete-selection-mode t)
+
+ ;; show the opposite paren when closing
+ (show-paren-mode t)
+
+ ;; highlight the current line
+ (global-visual-line-mode)
+ (diminish 'visual-line-mode)
+
+
+#+end_src
+
+This is the auto generated elisp from the .emacs for wheatgrass.
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff"
+    "#eeeeec"])
+ '(custom-enabled-themes (quote (tsdh-dark)))
+
+
+* Packages
+
+ '(global-auto-complete-mode t)
+ '(ido-mode (quote both) nil (ido))
+ '(org-agenda-files
+   (quote
+    ("c:/Users/marka/Dropbox/Apps/OrgMode/gtd_work.org"
+     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_proging.org"
+     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_home.org"
+     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org")))
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.org/packages/")))))
+(custom-set-faces
+ ;;
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ ;;
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil
+			 :strike-through nil :overline nil :underline nil
+			 :slant normal :weight normal :height 143 :width normal
+			 :foundry "outline" :family "Lucida Console")))))
+ ;;
+ ;;
+ ;;
+ ;; Org Mode Modifications
+ ;;
+ ;;
+ ;;Require org mode on start up
+(require 'org)
+ ;; add keybidings for org capture
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key (kbd "<f9> I") 'bh/punch-in)
+(global-set-key (kbd "<f9> O") 'bh/punch-out)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+;;
+;;
+;; add todo sequencing
+;; The pipe | separates the todo state from the completed state
+;; letters in brackets are the shortcuts to each state
+;; delegated @ requires a note on switching to delegated /! records time stamp
+;; when switching to a state that does not record  a time stamp
+;;
+;;
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "DELEGATED(l@/!)" "|"
+		  "DONE(d)" "DEFERED(f)")))
+;;
+;; Switching to a done state logs time and opens note buffer
+;;
+(setq org-log-done 'time)
+(setq org-log-done 'note)
+;;
+;; create the global set of tags to be used in all .org files
+;; tag and short cut
+;;
+(setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@my_pc" . ?p)))
+;;
+;;
+(setq org-directory "C:/Users/marka/Dropbox/Apps/OrgMode")
+(setq org-default-notes-file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+;;
+;; C-c c to start capture mode
+;; code source Org Mode Organize your life in plain text
+;; by Bernt Hansen
+;;
+;; modified some templates removed
+;;
+;;
+;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings
+;; and org-protocol
+;;
+(setq org-capture-templates
+      (quote (("t" "todo"
+	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("r" "respond"
+	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n"
+	       :clock-in t :clock-resume t :immediate-finish t)
+              ("n" "note"
+	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)            
+              ("m" "Meeting"
+	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+              ("p" "Phone call"
+	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("h" "Habit"
+	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* NEXT %?\n%U\n%a\n
+                SCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")
+                \n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE:
+                NEXT\n:END:\n"))))
+;;
+;;
+;; Targets include file where refile command initiated
+;; and any file contributing to the agenda - up to 9 levels deep
+;;
+(setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                 (org-agenda-files :maxlevel . 9))))
+;;
+;; Allow refile to create parent tasks with confirmation
+(setq org-refile-allow-creating-parent-nodes (quote confirm))
+(setq org-refile-use-outline-path 'file)
+;;
+; Use IDO for both buffer and file completion and ido-everywhere to t
+(setq org-completion-use-ido t)
+(setq ido-everywhere t)
+(setq ido-max-directory-size 100000)
+(ido-mode (quote both))
+; Use the current window when visiting files and buffers with ido
+(setq ido-default-file-method 'selected-window)
+(setq ido-default-buffer-method 'selected-window)
+; Use the current window for indirect buffer display
+(setq org-indirect-buffer-display 'current-window)
+;;
+;;
+;; org mode custom agendas
+;;
+(setq org-agenda-custom-commands
+      '(("D" "Daily rotine" ;; Press to choose ad name
+	 ;; review upcoming deadlines and appointments
+         ((agenda "" ((org-agenda-ndays 1)))
+	  ;;
+	   (tags "REFILE"
+                      ((org-agenda-overriding-header "Tasks to Refile")
+                       (org-tags-match-list-sublevels nil)))
+	  ;;
+	  ;;review all next items
+          (todo "NEXT")))))
+;;
+;;
+;;
+;; Python related modifications
+;;
+;;
+;;
+;; Set IPython to be the default Python Shell
+(setq python-shell-interpreter "ipython"
+       python-shell-interpreter-args "-i")
+(elpy-enable)
