@@ -175,8 +175,6 @@ column mode on etc
  ;; delete the region when typing, just like as we expect nowadays.
  (delete-selection-mode t)
 
- ;; show the opposite paren when closing
- (show-paren-mode t)
 
  ;; highlight the current line
  (global-visual-line-mode)
@@ -192,7 +190,30 @@ This is the auto generated elisp from the .emacs for wheatgrass.
  '(custom-enabled-themes (quote (tsdh-dark)))
 
 
+* Default Behaviour
+
+#+begin_src emacs-lisp
+
+ ;; show the opposite paren when closing
+ (show-paren-mode t)
+ 
+ ;; use shift arrow key to move from windo to window when not in 
+ ;; org mode
+ (windmove-default-keybindings)
+
+ ;; delete the region when typing, just like as we expect nowadays.
+ (delete-selection-mode t)
+
+
+#+end_src
+
+
 * Packages
+
+#+begin_src emacs-lisp
+
+#+end_src
+
 
  '(global-auto-complete-mode t)
  '(ido-mode (quote both) nil (ido))
@@ -340,3 +361,11 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 (setq python-shell-interpreter "ipython"
        python-shell-interpreter-args "-i")
 (elpy-enable)
+
+* Org Mode
+** Org Mode Files
+
+Set the path to the Dropbox folder
+#+begin_src emacs-lisp
+
+#+end_src
