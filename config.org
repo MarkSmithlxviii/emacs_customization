@@ -194,15 +194,18 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 
 #+begin_src emacs-lisp
 
- ;; show the opposite paren when closing
- (show-paren-mode t)
- 
- ;; use shift arrow key to move from windo to window when not in 
- ;; org mode
- (windmove-default-keybindings)
+;; Save all backup files in one location
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
- ;; delete the region when typing, just like as we expect nowadays.
- (delete-selection-mode t)
+;; show the opposite paren when closing
+(show-paren-mode t)
+ 
+;; use shift arrow key to move from windo to window when not in 
+;; org mode
+(windmove-default-keybindings)
+
+;; delete the region when typing, just like as we expect nowadays.
+(delete-selection-mode t)
 
 
 #+end_src
@@ -367,5 +370,13 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 
 Set the path to the Dropbox folder
 #+begin_src emacs-lisp
+
+;; The org 
+(org-agenda-files
+   (quote
+    ("c:/Users/marka/Dropbox/Apps/OrgMode/gtd_work.org"
+     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_proging.org"
+     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_home.org"
+     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org")))
 
 #+end_src
