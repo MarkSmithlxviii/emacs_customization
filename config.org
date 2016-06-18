@@ -189,7 +189,6 @@ This is the auto generated elisp from the .emacs for wheatgrass.
     "#eeeeec"])
  '(custom-enabled-themes (quote (tsdh-dark)))
 
-
 * Default Behaviour
 
 #+begin_src emacs-lisp
@@ -210,7 +209,6 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 
 #+end_src
 
-
 * Packages
 
 #+begin_src emacs-lisp
@@ -220,13 +218,7 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 
  '(global-auto-complete-mode t)
  '(ido-mode (quote both) nil (ido))
- '(org-agenda-files
-   (quote
-    ("c:/Users/marka/Dropbox/Apps/OrgMode/gtd_work.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_proging.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_home.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org")))
- '(package-archives
+  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))))
@@ -278,44 +270,8 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 ;; tag and short cut
 ;;
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@my_pc" . ?p)))
-;;
-;;
-(setq org-directory "C:/Users/marka/Dropbox/Apps/OrgMode")
-(setq org-default-notes-file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-;;
-;; C-c c to start capture mode
-;; code source Org Mode Organize your life in plain text
-;; by Bernt Hansen
-;;
-;; modified some templates removed
-;;
-;;
-;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings
-;; and org-protocol
-;;
-(setq org-capture-templates
-      (quote (("t" "todo"
-	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond"
-	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n"
-	       :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "note"
-	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)            
-              ("m" "Meeting"
-	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call"
-	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit"
-	        entry (file "C:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
-                "* NEXT %?\n%U\n%a\n
-                SCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")
-                \n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE:
-                NEXT\n:END:\n"))))
+
+
 ;;
 ;;
 ;; Targets include file where refile command initiated
@@ -365,18 +321,126 @@ This is the auto generated elisp from the .emacs for wheatgrass.
        python-shell-interpreter-args "-i")
 (elpy-enable)
 
+list of all packages installed on notebook
+ auto-complete      20151211.227  installed             Auto Completion for GNU Emacs
+  cl-lib-highlight   20140127.1312 installed             full cl-lib font-lock highlighting
+  company            20151208.1341 installed             Modular text completion framework
+  company-jedi       20151216.1921 installed             company-mode completion back-end for Python JEDI
+  concurrent         20150309.2052 installed             Concurrent utility functions for emacs lisp
+  ctable             20140304.1659 installed             Table component for Emacs Lisp
+  dash               20151021.113  installed             A modern list library for Emacs
+  deferred           20151007.1657 installed             Simple asynchronous functions for emacs lisp
+  direx              20151023.1606 installed             Simple Directory Explorer
+  elpy               20151101.401  installed             Emacs Python Development Environment
+  epc                20140609.2234 installed             A RPC stack for the Emacs Lisp
+  epl                20150517.433  installed             Emacs Package Library
+  ess                20151210.52   installed             Emacs Speaks Statistics
+  f                  20151113.123  installed             Modern API for working with files and directories
+  f90-interface-b... 1.1           installed             Parse and browse f90 interfaces
+  find-file-in-pr... 20151208.2241 installed             Find files in a project quickly, on any OS
+  flycheck           20151212.411  installed             On-the-fly syntax checking
+  flycheck-pyflakes  20140630.1521 installed             Support pyflakes in flycheck
+  flymake-easy       20140818.55   installed             Helpers for easily building flymake checkers
+  flymake-python-... 20131127.6    installed             A flymake handler for python-mode files using pyflakes (or flake8)
+  fortpy             20150715.1332 installed             a Fortran auto-completion for Emacs
+  highlight-inden... 20150307.208  installed             Minor modes for highlighting indentation
+  jedi               20160425.2156 installed             a Python auto-completion for Emacs
+  jedi-core          20160501.2043 installed             Common code of jedi.el and company-jedi.el
+  jedi-direx         20140310.236  installed             Tree style source code viewer for Python buffer
+  julia-mode         20150912.800  installed             Major mode for editing Julia source code
+  let-alist          1.0.4         installed             Easily let-bind values of an assoc-list by their names
+  org-beautify-theme 20150106.956  installed             A sub-theme to make org-mode more beautiful.
+  org-projectile     20160604.1110 installed             Repository todo management for org-mode
+  pkg-info           20150517.443  installed             Information about packages
+  popup              20151125.542  installed             Visual Popup User Interface
+  pos-tip            20150318.813  installed             Show tooltip at point
+  projectile         20160526.832  installed             Manage and navigate projects in Emacs easily
+  pungi              20150222.446  installed             Integrates jedi with virtualenv and buildout python environments
+  python-environment 20150310.153  installed             virtualenv API for Emacs Lisp
+  python-mode        20151210.918  installed             Python major mode
+  pythonic           20150730.216  installed             Utility functions for writing pythonic emacs package.
+  pyvenv             20151105.1519 installed             Python virtual environment interface
+  r-autoyas          20140101.710  installed             Provides automatically created yasnippets for R function argument lists.
+  s                  20150924.406  installed             The long lost Emacs string manipulation library.
+  seq                20151121.1017 installed             Sequence manipulation functions
+  smartparens        20151213.811  installed             Automatic insertion, wrapping and paredit-like navigation with user defined pairs.
+  swiper             20151212.41   installed             Isearch with an overview. Oh, man!
+  virtualenv         20140220.1501 installed             Virtualenv for Python
+  yasnippet          20151212.2133 installed             Yet another snippet extension for Emacs.
+
+
 * Org Mode
+
+[[http://orgmode.org/][Live Life in Plain Text with Org Mode]] 
+
 ** Org Mode Files
 
 Set the path to the Dropbox folder
+
 #+begin_src emacs-lisp
 
 ;; The org 
-(org-agenda-files
-   (quote
+(setq org-agenda-files
+   (delq nil
+            (mapcar (lambda (x) (and (file-exists-p x) x))
     ("c:/Users/marka/Dropbox/Apps/OrgMode/gtd_work.org"
      "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_proging.org"
      "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_home.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org")))
+     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org"))))
+
+(setq org-directory "c:/Users/marka/Dropbox/Apps/OrgMode")
+(setq org-default-notes-file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+
+;; Capture mode -  C-c c to start
+
+;; code source 
+;; Org Mode Organize your life in plain text
+;; by Bernt Hansen
+
+
+;; modified, some templates removed.
+;;
+;;
+;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings
+;; and org-protocol
+;;
+(setq org-capture-templates
+      (quote (("t" "todo"
+	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("r" "respond"
+	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n"
+	       :clock-in t :clock-resume t :immediate-finish t)
+              ("n" "note"
+	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)            
+              ("m" "Meeting"
+	        entry (file "c:/Users/marka/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+              ("p" "Phone call"
+	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("h" "Habit"
+	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+                "* NEXT %?\n%U\n%a\n
+                SCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")
+                \n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE:
+                NEXT\n:END:\n"))))
+
+
+#+end_src
+** Org Keybindings
+
+#+begin_src emacs-lisp
+
+(global-set-key "\C-cc" 'org-capture)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+;; Clock in and Clock out from anywhere
+(global-set-key (kbd "<f9> I") 'bh/punch-in)
+(global-set-key (kbd "<f9> O") 'bh/punch-out)
 
 #+end_src
