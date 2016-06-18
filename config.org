@@ -373,22 +373,22 @@ list of all packages installed on notebook
 
 [[http://orgmode.org/][Live Life in Plain Text with Org Mode]] 
 
-** Org Mode Files
+** Org Mode Directory and files
 
 Set the path to the Dropbox folder
 
 #+begin_src emacs-lisp
 
-;; The org 
-(setq org-agenda-files
-   (delq nil
-            (mapcar (lambda (x) (and (file-exists-p x) x))
+(setq org-directory "c:/Users/marka/Dropbox/Apps/OrgMode")
+ 
+(org-agenda-files
+   (quote
     ("c:/Users/marka/Dropbox/Apps/OrgMode/gtd_work.org"
      "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_proging.org"
      "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_home.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org"))))
+     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org")))
 
-(setq org-directory "c:/Users/marka/Dropbox/Apps/OrgMode")
+
 (setq org-default-notes-file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
 
 ;; Capture mode -  C-c c to start
