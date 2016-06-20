@@ -211,9 +211,71 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 
 * Packages
 
-#+begin_src emacs-lisp
+Packages that are not built in
 
+[[https://github.com/jwiegley/use-package][use-package]] will download the package from elpa/melpa 
+
+** Auto Complete
+
+[[https://github.com/auto-complete/auto-complete][Auto Completion]] for GNU Emacs
+
+#+begin_src emacs-lisp
+(use-package auto-complete
+  :defer t
+  :ensure t
 #+end_src
+
+       
+
+
+  
+  cl-lib-highlight   20140127.1312 installed             full cl-lib font-lock highlighting
+  company            20151208.1341 installed             Modular text completion framework
+  company-jedi       20151216.1921 installed             company-mode completion back-end for Python JEDI
+  concurrent         20150309.2052 installed             Concurrent utility functions for emacs lisp
+  ctable             20140304.1659 installed             Table component for Emacs Lisp
+  dash               20151021.113  installed             A modern list library for Emacs
+  deferred           20151007.1657 installed             Simple asynchronous functions for emacs lisp
+  direx              20151023.1606 installed             Simple Directory Explorer
+  elpy               20151101.401  installed             Emacs Python Development Environment
+  epc                20140609.2234 installed             A RPC stack for the Emacs Lisp
+  epl                20150517.433  installed             Emacs Package Library
+  ess                20151210.52   installed             Emacs Speaks Statistics
+  f                  20151113.123  installed             Modern API for working with files and directories
+  f90-interface-b... 1.1           installed             Parse and browse f90 interfaces
+  find-file-in-pr... 20151208.2241 installed             Find files in a project quickly, on any OS
+  flycheck           20151212.411  installed             On-the-fly syntax checking
+  flycheck-pyflakes  20140630.1521 installed             Support pyflakes in flycheck
+  flymake-easy       20140818.55   installed             Helpers for easily building flymake checkers
+  flymake-python-... 20131127.6    installed             A flymake handler for python-mode files using pyflakes (or flake8)
+  fortpy             20150715.1332 installed             a Fortran auto-completion for Emacs
+  highlight-inden... 20150307.208  installed             Minor modes for highlighting indentation
+  jedi               20160425.2156 installed             a Python auto-completion for Emacs
+  jedi-core          20160501.2043 installed             Common code of jedi.el and company-jedi.el
+  jedi-direx         20140310.236  installed             Tree style source code viewer for Python buffer
+  julia-mode         20150912.800  installed             Major mode for editing Julia source code
+  let-alist          1.0.4         installed             Easily let-bind values of an assoc-list by their names
+  org-beautify-theme 20150106.956  installed             A sub-theme to make org-mode more beautiful.
+  org-projectile     20160604.1110 installed             Repository todo management for org-mode
+  pkg-info           20150517.443  installed             Information about packages
+  popup              20151125.542  installed             Visual Popup User Interface
+  pos-tip            20150318.813  installed             Show tooltip at point
+  projectile         20160526.832  installed             Manage and navigate projects in Emacs easily
+  pungi              20150222.446  installed             Integrates jedi with virtualenv and buildout python environments
+  python-environment 20150310.153  installed             virtualenv API for Emacs Lisp
+  python-mode        20151210.918  installed             Python major mode
+  pythonic           20150730.216  installed             Utility functions for writing pythonic emacs package.
+  pyvenv             20151105.1519 installed             Python virtual environment interface
+  r-autoyas          20140101.710  installed             Provides automatically created yasnippets for R function argument lists.
+  s                  20150924.406  installed             The long lost Emacs string manipulation library.
+  seq                20151121.1017 installed             Sequence manipulation functions
+  smartparens        20151213.811  installed             Automatic insertion, wrapping and paredit-like navigation with user defined pairs.
+  swiper             20151212.41   installed             Isearch with an overview. Oh, man!
+  virtualenv         20140220.1501 installed             Virtualenv for Python
+  yasnippet          20151212.2133 installed             Yet another snippet extension for Emacs.
+
+
+
 
 
  '(global-auto-complete-mode t)
@@ -322,7 +384,7 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 (elpy-enable)
 
 list of all packages installed on notebook
- auto-complete      20151211.227  installed             Auto Completion for GNU Emacs
+  auto-complete      20151211.227  installed             Auto Completion for GNU Emacs
   cl-lib-highlight   20140127.1312 installed             full cl-lib font-lock highlighting
   company            20151208.1341 installed             Modular text completion framework
   company-jedi       20151216.1921 installed             company-mode completion back-end for Python JEDI
@@ -368,7 +430,6 @@ list of all packages installed on notebook
   virtualenv         20140220.1501 installed             Virtualenv for Python
   yasnippet          20151212.2133 installed             Yet another snippet extension for Emacs.
 
-
 * Org Mode
 
 [[http://orgmode.org/][Live Life in Plain Text with Org Mode]] 
@@ -379,17 +440,31 @@ Set the path to the Dropbox folder
 
 #+begin_src emacs-lisp
 
-(setq org-directory "c:/Users/marka/Dropbox/Apps/OrgMode")
- 
-(org-agenda-files
-   (quote
-    ("c:/Users/marka/Dropbox/Apps/OrgMode/gtd_work.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_proging.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/gtd_home.org"
-     "c:/Users/marka/Dropbox/Apps/OrgMode/DailyRoutine.org")))
+;; add a directory path to this list to use org files
+
+(setq org-directory 
+      (car   
+          (delq nil
+             (mapcar (lambda(x) (and (file-directory-p x) x))
+                           '("c:/Users/marka/Dropbox/Apps/OrgMode"
+                             "c:/Users/Mark/Dropbox/Apps/OrgMode"
+                             "c:/Users/msmith/Dropbox/Apps/OrgMode")))))
+
+;; car pulls the first item of a list which in this case is the only elemant
+;; in the list without car the result is of type cons, and does not concat
+;; properly below 
+
+(setq org-agenda-files
+    (delq nil
+        (mapcar (lambda(y) (and (file-exists-p y) y))
+            (list
+                (concat org-directory "/gtd_work.org")
+                (concat org-directory "/gtd_proging.org")
+                (concat org-directory "/gtd_home.org")
+                (concat org-directory "/DailyRoutine.org")))
 
 
-(setq org-default-notes-file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+(setq org-default-notes-file (concat org-directory "/refile.org"))
 
 ;; Capture mode -  C-c c to start
 
@@ -406,23 +481,23 @@ Set the path to the Dropbox folder
 ;;
 (setq org-capture-templates
       (quote (("t" "todo"
-	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+	        entry (file (concat org-directory"/refile.org")
                 "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
               ("r" "respond"
-	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+	        entry (file (concat org-directory"/refile.org"))
                 "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n"
 	       :clock-in t :clock-resume t :immediate-finish t)
               ("n" "note"
-	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+	        entry (file (concat org-directory"/refile.org"))
                 "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)            
               ("m" "Meeting"
-	        entry (file "c:/Users/marka/marka/Dropbox/Apps/OrgMode/refile.org")
+	        entry (file (concat org-directory"/refile.org"))
                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
               ("p" "Phone call"
-	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+	        entry (file (concat org-directory"refile.org"))
                 "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
               ("h" "Habit"
-	        entry (file "c:/Users/marka/Dropbox/Apps/OrgMode/refile.org")
+	        entry (file (concat org-directory"/refile.org"))
                 "* NEXT %?\n%U\n%a\n
                 SCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")
                 \n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE:
@@ -440,7 +515,59 @@ Set the path to the Dropbox folder
 (global-set-key "\C-cb" 'org-iswitchb)
 
 ;; Clock in and Clock out from anywhere
+
 (global-set-key (kbd "<f9> I") 'bh/punch-in)
 (global-set-key (kbd "<f9> O") 'bh/punch-out)
 
+#+end_src
+
+** Org babel languages
+
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (calc . t)
+   (latex . t)
+   (lisp . t)
+   (sh . t)
+   (sqlite . t)
+   (F90 . t)
+   (R . t)
+  ))
+
+;; Running code on your machine always comes with a security risk. Badly 
+;; written or malicious code can be executed on purpose or by accident. Org 
+;; has default settings which will only evaluate such code if you give 
+;; explicit permission to do so, and as a casual user of these features you 
+;; should leave these precautions intact.  Uncomment below to stop the 
+;; confirm requirements
+
+;;(defun my-org-confirm-babel-evaluate (lang body)
+;;  "Do not confirm evaluation for these languages."
+;;  (not (or (string= lang "python")
+;;           (string= lang "emacs-lisp")
+;;           (string= lang "sqlite"))))
+;;(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+#+end_src
+
+** Org babel/source blocks
+
+I like to have source blocks properly syntax highlighted and with the
+editing popup window staying within the same window so all the windows
+don't jump around. Also, having the top and bottom trailing lines in
+the block is a waste of space, so we can remove them.
+
+I noticed that fontification doesn't work with markdown mode when the
+block is indented after editing it in the org src buffer---the leading
+#s for headers don't get fontified properly because they appear as Org
+comments. Setting ~org-src-preserve-indentation~ makes things
+consistent as it doesn't pad source blocks with leading spaces.
+
+#+begin_src emacs-lisp
+(setq org-src-fontify-natively t
+      org-src-window-setup 'current-window
+      org-src-strip-leading-and-trailing-blank-lines t
+      org-src-preserve-indentation t
+      org-src-tab-acts-natively t)
 #+end_src
