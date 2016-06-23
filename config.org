@@ -235,23 +235,62 @@ Packages that are not built in
   :ensure t
 #+end_src
        
+** elpy
+
+[[https://elpy.readthedocs.io/en/latest/index.html][Emacs Python Development Environment]]
+
+The following are required outside of emacs using python installer pip
+
+Either of these:
+
+  pip install rope
+  pip install jedi
+
+flake8 for code checks:
+
+  pip install flake8
+
+importmagic for automatic imports:
+
+  pip install importmagic
+
+and autopep8 for automatic PEP8 formatting:
+
+  pip install autopep8
+
+and yapf for code formatting:
+
+  pip install yapf
+
+#+begin_src emacs-lisp
+(use-package elpy
+  :defer t
+  :ensure t
+#+end_src
+** Fortran parser and browser
+
+[[https://github.com/wence-/f90-iface][Interface Browser]] for parsing and browsing f90 files.
+
+#+begin_src emacs-lisp
+(use-package f90-interface-browser
+  :defer t
+  :ensure t
+#+end_src
 
 
   
   cl-lib-highlight   20140127.1312 installed             full cl-lib font-lock highlighting
   company            20151208.1341 installed             Modular text completion framework
-         20151216.1921 installed             
   concurrent         20150309.2052 installed             Concurrent utility functions for emacs lisp
   ctable             20140304.1659 installed             Table component for Emacs Lisp
   dash               20151021.113  installed             A modern list library for Emacs
   deferred           20151007.1657 installed             Simple asynchronous functions for emacs lisp
   direx              20151023.1606 installed             Simple Directory Explorer
-  elpy               20151101.401  installed             Emacs Python Development Environment
   epc                20140609.2234 installed             A RPC stack for the Emacs Lisp
   epl                20150517.433  installed             Emacs Package Library
   ess                20151210.52   installed             Emacs Speaks Statistics
   f                  20151113.123  installed             Modern API for working with files and directories
-  f90-interface-b... 1.1           installed             Parse and browse f90 interfaces
+
   find-file-in-pr... 20151208.2241 installed             Find files in a project quickly, on any OS
   flycheck           20151212.411  installed             On-the-fly syntax checking
   flycheck-pyflakes  20140630.1521 installed             Support pyflakes in flycheck
