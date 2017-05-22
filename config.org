@@ -4,14 +4,11 @@
 With HEAVY reliance on the original [[https://github.com/danielmai/.emacs.d.git][document]] by Daniel Mai.
 
 
-I've been using Emacs on and off since the summer of 2014, and along
-the way I've become accustomed to many different tweaks for it.
+I've been using Emacs on and off since the summer of 2014, and along the way I've become accustomed to many different tweaks for it.
 
-This configuration uses the [[https://github.com/jwiegley/use-package][use-package]] package from John Wiegley, which is
-a fantastic way to manage package configurations.  
+This configuration uses the [[https://github.com/jwiegley/use-package][use-package]] package from John Wiegley, which is a fantastic way to manage package configurations.  
 
-This file is written in org modeand takes advantage of org babel to strip away 
-everythin in the file except the emacs lisp surrounded by begin and end source tags. 
+This file is written in org mode and takes advantage of org babel to strip away everything in the file except the emacs lisp surrounded by begin and end source tags. 
 
 * Personal information
 
@@ -23,10 +20,7 @@ everythin in the file except the emacs lisp surrounded by begin and end source t
 * Emacs init and tangling this file
 ** Init file
 
-Init.el is always loaded by emacs.  Emacs expects elisp code at a
-minimum the following should be saved into a sepparate file and
-saved as init.el in the home directory ~\ or something similar to; 
-C:\Users\Mark\AppData\Roaming\.emacs.d
+Init.el is always loaded by emacs.  Emacs expects elisp code at a minimum the following should be saved into a sepparate file and saved as init.el in the home directory ~\ or something similar to; C:\Users\xxxx\AppData\Roaming\.emacs.d on a windows machine.
 
 
 ;;; Set up package
@@ -49,6 +43,7 @@ C:\Users\Mark\AppData\Roaming\.emacs.d
   (package-install 'use-package))
 
 ;; From use-package README
+
 (eval-when-compile
   (require 'use-package))
 (require 'diminish)                ;; if you use :diminish
@@ -61,11 +56,9 @@ C:\Users\Mark\AppData\Roaming\.emacs.d
 
 ** Save path for this file after org bable
 
-The initialization file (above) is set up to pull all the elisp out of 
-config.org (this file)
+The initialization file (above) is set up to pull all the elisp out of config.org (this file).
 
-Set up the customize file to its own separate file, instead of saving
-customize settings in [[file:init.el][init.el]]
+Set up the customize file to its own separate file, instead of saving customize settings in [[file:init.el][init.el]]
 
 #+begin_src emacs-lisp
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -151,8 +144,7 @@ by emacs after using the custimize faces menu
 
 ** Defaults
 
-Customizations that will always be in effect such as start up frame size
-column mode on etc
+Customizations that will always be in effect such as start up frame size column mode on etc
 
 #+begin_src emacs-lisp
 
@@ -199,7 +191,7 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 ;; show the opposite paren when closing
 (show-paren-mode t)
  
-;; use shift arrow key to move from windo to window when not in 
+;; use shift arrow key to move from window to window when not in 
 ;; org mode
 (windmove-default-keybindings)
 
@@ -211,7 +203,7 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 
 * Packages
 
-Packages that are not built in
+For any packages that are not built in
 
 [[https://github.com/jwiegley/use-package][use-package]] will download the package from elpa/melpa 
 
@@ -222,7 +214,7 @@ Packages that are not built in
 #+begin_src emacs-lisp
 (use-package auto-complete
   :defer t
-  :ensure t
+  :ensure t)
 #+end_src
 
 ** company-jedi
@@ -232,7 +224,7 @@ Packages that are not built in
 #+begin_src emacs-lisp
 (use-package company-jedi
   :defer t
-  :ensure t
+  :ensure t)
 #+end_src
        
 ** elpy
@@ -265,7 +257,7 @@ and yapf for code formatting:
 #+begin_src emacs-lisp
 (use-package elpy
   :defer t
-  :ensure t
+  :ensure t)
 #+end_src
 ** Flycheck-pyflakes
 
@@ -275,7 +267,7 @@ and yapf for code formatting:
 #+begin_src emacs-lisp
 (use-package flycheck-pyflakes
   :defer t
-  :ensure t
+  :ensure t)
 #+end_src
 
 
@@ -286,27 +278,62 @@ and yapf for code formatting:
 #+begin_src emacs-lisp
 (use-package f90-interface-browser
   :defer t
-  :ensure t
+  :ensure t)
 #+end_src
 
 ** Fortpy
 
-[[https://github.com/rosenbrockc/fortpy][Fortpy]] is a Fortran auto-completion for Emacs written in Python
-it can be installed with pip install fortpy
+[[https://github.com/rosenbrockc/fortpy][Fortpy]] is a Fortran auto-completion for Emacs written in Python it can be installed with pip install fortpy
 
 #+begin_src emacs-lisp
 (use-package fortpy
   :defer t
-  :ensure t
+  :ensure t)
 #+end_src
 
-fortpy             20150715.1332 installed             
-  
-  cl-lib-highlight   20140127.1312 installed             full cl-lib font-lock highlighting
-  company            20151208.1341 installed             Modular text completion framework
-  concurrent         20150309.2052 installed             Concurrent utility functions for emacs lisp
-  ctable             20140304.1659 installed             Table component for Emacs Lisp
-  dash               20151021.113  installed             A modern list library for Emacs
+[[https://github.com/skeeto/cl-lib-highlight][CL-lib Highlighting]] adds all of the familiar highlighting to cl-lib macros that were originally provided for cl.
+
+#+begin_src emacs-lisp
+(use-package cl-lib-highlight
+  :defer t
+  :ensure t)
+#+end_src
+
+[[http://company-mode.github.io/][Company Mode]] is a text completion framework for Emacs. The name stands for "complete anything". It uses pluggable back-ends and front-ends to retrieve and display completion candidates.
+
+#+begin_src emacs-lisp
+(use-package company
+  :defer t
+  :ensure t)
+#+end_src
+
+[[https://github.com/kiwanami/emacs-deferred/blob/master/README-concurrent.markdown][Concurrent]] is a higher level library for asynchronous tasks, based on deferred.el.
+
+It is inspired by libraries of other environments and concurrent programing models. It has following facilities: pseud-thread, generator, semaphore, dataflow variables and event management.
+
+#+begin_src emacs-lisp
+(use-package concurrent
+  :defer t
+  :ensure t)
+#+end_src
+
+[[https://github.com/kiwanami/emacs-ctable][ctable]] is a table component for emacs lisp. Emacs lisp programs can display a nice table view from an abstract data model. The many emacs programs have the code for displaying table views, such as dired, list-process, buffer-list and so on. So, ctable.el would provide functions and a table framework for the table views.
+
+#+begin_src emacs-lisp
+(use-package ctable
+  :defer t
+  :ensure t)
+#+end_src
+
+[[https://github.com/magnars/dash.el][dash]] a modern list api for emacs.  No cl required.
+
+#+begin_src emacs-lisp
+(use-package dash
+  :defer t
+  :ensure t)
+#+end_src
+
+
   deferred           20151007.1657 installed             Simple asynchronous functions for emacs lisp
   direx              20151023.1606 installed             Simple Directory Explorer
   epc                20140609.2234 installed             A RPC stack for the Emacs Lisp
