@@ -1,3 +1,4 @@
+
 #+TITLE: Emacs Configuration
 #+AUTHOR: Mark Smith
 
@@ -198,6 +199,15 @@ This is the auto generated elisp from the .emacs for wheatgrass.
 ;; delete the region when typing, just like as we expect nowadays.
 (delete-selection-mode t)
 
+;; To get the M-y immediately pulls up the kill ring behavior, 
+;; you need to run M-x browse-kill-ring-default-keybindings. 
+;; Or, to put this in .emacs
+;; other kill ring behavior can be modified see
+;; https://www.emacswiki.org/emacs/BrowseKillRing
+
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+
 
 #+end_src
 
@@ -291,6 +301,8 @@ and yapf for code formatting:
   :ensure t)
 #+end_src
 
+** Highlighting
+
 [[https://github.com/skeeto/cl-lib-highlight][CL-lib Highlighting]] adds all of the familiar highlighting to cl-lib macros that were originally provided for cl.
 
 #+begin_src emacs-lisp
@@ -299,6 +311,8 @@ and yapf for code formatting:
   :ensure t)
 #+end_src
 
+** Company Mode
+
 [[http://company-mode.github.io/][Company Mode]] is a text completion framework for Emacs. The name stands for "complete anything". It uses pluggable back-ends and front-ends to retrieve and display completion candidates.
 
 #+begin_src emacs-lisp
@@ -306,6 +320,8 @@ and yapf for code formatting:
   :defer t
   :ensure t)
 #+end_src
+
+** Concurrent
 
 [[https://github.com/kiwanami/emacs-deferred/blob/master/README-concurrent.markdown][Concurrent]] is a higher level library for asynchronous tasks, based on deferred.el.
 
@@ -317,6 +333,8 @@ It is inspired by libraries of other environments and concurrent programing mode
   :ensure t)
 #+end_src
 
+** ctable
+
 [[https://github.com/kiwanami/emacs-ctable][ctable]] is a table component for emacs lisp. Emacs lisp programs can display a nice table view from an abstract data model. The many emacs programs have the code for displaying table views, such as dired, list-process, buffer-list and so on. So, ctable.el would provide functions and a table framework for the table views.
 
 #+begin_src emacs-lisp
@@ -324,6 +342,8 @@ It is inspired by libraries of other environments and concurrent programing mode
   :defer t
   :ensure t)
 #+end_src
+
+** dash
 
 [[https://github.com/magnars/dash.el][dash]] a modern list api for emacs.  No cl required.
 
@@ -333,15 +353,78 @@ It is inspired by libraries of other environments and concurrent programing mode
   :ensure t)
 #+end_src
 
+** deferred 
 
-  deferred           20151007.1657 installed             Simple asynchronous functions for emacs lisp
-  direx              20151023.1606 installed             Simple Directory Explorer
-  epc                20140609.2234 installed             A RPC stack for the Emacs Lisp
-  epl                20150517.433  installed             Emacs Package Library
-  ess                20151210.52   installed             Emacs Speaks Statistics
-  f                  20151113.123  installed             Modern API for working with files and directories
+[[https://github.com/kiwanami/emacs-deferred][deferred]]  Simple asynchronous functions for emacs lisp
 
-  find-file-in-pr... 20151208.2241 installed             Find files in a project quickly, on any OS
+#+begin_src emacs-lisp
+(use-package deferred
+  :defer t
+  :ensure t)
+#+end_src
+
+** direx
+
+[[https://github.com/m2ym/direx-el][direx]] Simple Directory Explorer
+
+#+begin_src emacs-lisp
+(use-package direx
+  :defer t
+  :ensure t)
+#+end_src
+
+** epc 
+
+[[https://github.com/kiwanami/emacs-epc][epc]] This program is an asynchronous RPC stack for Emacs. Using this RPC stack, the Emacs can communicate with the peer process smoothly. Because the protocol employs S-expression encoding and consists of asynchronous communications, the RPC response is fairly good.
+
+#+begin_src emacs-lisp
+(use-package epc
+  :defer t
+  :ensure t)
+#+end_src
+
+** epl Emacs Package Library
+
+[[https://github.com/cask/epl][epl]] EPL provides a convenient high-level API for various package.el versions, and aims to overcome its most striking idiocies.
+
+#+begin_src emacs-lisp
+(use-package epl
+  :defer t
+  :ensure t)
+#+end_src
+
+** ess Emacs Speaks Statistics
+
+[[https://ess.r-project.org/][ess]] Emacs Speaks Statistics (ESS) is an add-on package for emacs text editors such as GNU Emacs and XEmacs. It is designed to support editing of scripts and interaction with various statistical analysis programs such as R, S-Plus, SAS, Stata and OpenBUGS/JAGS. Although all users of these statistical analysis programs are welcome to apply ESS, advanced users or professionals who regularly work with text-based statistical analysis scripts, with various statistical languages/programs, or with different operating systems might benefit from it the most.
+
+#+begin_src emacs-lisp
+(use-package ess
+  :defer t
+  :ensure t)
+#+end_src
+
+** f 
+
+[[https://github.com/rejeep/f.el/tree/master/bin][f]] Modern API for working with files and directories
+
+#+begin_src emacs-lisp
+(use-package f
+  :defer t
+  :ensure t)
+#+end_src
+
+** Find File in Project
+
+[[https://www.emacswiki.org/emacs/FindFileInProject][Find File In Project]] This library provides a couple methods for quickly finding any file in a given project. It depends on GNU find.
+
+#+begin_src emacs-lisp
+(use-package find-file-in-project
+  :defer t
+  :ensure t)
+#+end_src
+ 
+
+
   flycheck           20151212.411  installed             On-the-fly syntax checking
   flymake-easy       20140818.55   installed             Helpers for easily building flymake checkers
   flymake-python-... 20131127.6    installed             A flymake handler for python-mode files using pyflakes (or flake8)
