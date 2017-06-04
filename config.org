@@ -311,6 +311,14 @@ and yapf for code formatting:
   :ensure t)
 #+end_src
 
+[[https://github.com/antonj/Highlight-Indentation-for-Emacs][highlight indentation]]  Provides two minor modes highlight-indentation-mode and highlight-indentation-current-column-mode
+
+#+begin_src emacs-lisp
+(use-package highlight-indentation
+  :defer t
+  :ensure t)
+#+end_src
+
 ** Company Mode
 
 [[http://company-mode.github.io/][Company Mode]] is a text completion framework for Emacs. The name stands for "complete anything". It uses pluggable back-ends and front-ends to retrieve and display completion candidates.
@@ -423,12 +431,34 @@ It is inspired by libraries of other environments and concurrent programing mode
   :ensure t)
 #+end_src
  
+** Flycheck
 
+[[http://www.flycheck.org/en/latest/][flycheck]] Flycheck is a modern on-the-fly syntax checking extension for GNU Emacs, intended as replacement for the older Flymake extension which is part of GNU Emacs. 
 
-  flycheck           20151212.411  installed             On-the-fly syntax checking
-  flymake-easy       20140818.55   installed             Helpers for easily building flymake checkers
-  flymake-python-... 20131127.6    installed             A flymake handler for python-mode files using pyflakes (or flake8)
-  highlight-inden... 20150307.208  installed             Minor modes for highlighting indentation
+#+begin_src emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init(global-flycheck-mode))
+#+end_src
+
+[[https://github.com/purcell/flymake-easy][flymake-easy]] Helpers for easily building flymake checkers
+
+#+begin_src emacs-lisp
+(use-package flymake-easy
+  :defer t
+  :ensure t)
+#+end_src
+
+[[https://github.com/purcell/flymake-python-pyflakes][Flymake for Python]] An Emacs flymake handler for syntax-checking Python source code using pyflakes or flake8.
+
+#+begin_src emacs-lisp
+(use-package flymake-python-pyflakes
+  :defer t
+  :ensure t)
+#+end_src
+
+** jedi
+
   jedi               20160425.2156 installed             a Python auto-completion for Emacs
   jedi-core          20160501.2043 installed             Common code of jedi.el and company-jedi.el
   jedi-direx         20140310.236  installed             Tree style source code viewer for Python buffer
