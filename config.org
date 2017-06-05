@@ -226,16 +226,6 @@ For any packages that are not built in
   :defer t
   :ensure t)
 #+end_src
-
-** company-jedi
-
-[[https://github.com/syohex/emacs-company-jedi][company-mode]] completion back-end for Python [[https://github.com/davidhalter/jedi][JEDI]]
-
-#+begin_src emacs-lisp
-(use-package company-jedi
-  :defer t
-  :ensure t)
-#+end_src
        
 ** elpy
 
@@ -279,7 +269,6 @@ and yapf for code formatting:
   :defer t
   :ensure t)
 #+end_src
-
 
 ** Fortran parser and browser
 
@@ -459,18 +448,77 @@ It is inspired by libraries of other environments and concurrent programing mode
 
 ** jedi
 
-  jedi               20160425.2156 installed             a Python auto-completion for Emacs
-  jedi-core          20160501.2043 installed             Common code of jedi.el and company-jedi.el
-  jedi-direx         20140310.236  installed             Tree style source code viewer for Python buffer
-  julia-mode         20150912.800  installed             Major mode for editing Julia source code
-  let-alist          1.0.4         installed             Easily let-bind values of an assoc-list by their names
-  org-beautify-theme 20150106.956  installed             A sub-theme to make org-mode more beautiful.
+[[https://github.com/tkf/emacs-jedi][jedi]] Jedi.el is a Python auto-completion package for Emacs. It aims at helping your Python coding in a non-destructive way. It also helps you to find information about Python objects, such as docstring, function arguments and code location.
+
+#+begin_src emacs-lisp
+(use-package jedi
+  :defer t
+  :ensure t)
+#+end_src
+
+jedi-core Common code of jedi.el and company-jedi.el
+
+#+begin_src emacs-lisp
+(use-package jedi-core
+  :defer t
+  :ensure t)
+#+end_src
+
+jedi-direx Tree style source code viewer for Python buffer
+
+#+begin_src emacs-lisp
+(use-package jedi-direx
+  :defer t
+  :ensure t)
+#+end_src
+
+pungi Integrates jedi with virtualenv and buildout python environments
+
+#+begin_src emacs-lisp
+(use-package pungi
+  :defer t
+  :ensure t)
+#+end_src
+
+company-jedi
+
+ [[https://github.com/syohex/emacs-company-jedi][company-mode]] completion back-end for Python [[https://github.com/davidhalter/jedi][JEDI]] 
+
+ #+begin_src emacs-lisp
+ (use-package company-jedi
+   :defer t
+   :ensure t)
+ #+end_src
+
+** let-alist
+
+[[https://elpa.gnu.org/packages/let-alist.html][let-alist]] Easily let-bind values of an assoc-list by their names
+
+#+begin_src emacs-lisp
+(use-package let-alist
+  :defer t
+  :ensure t)
+#+end_src
+
+** org mode extras
+
+[[https://github.com/jonnay/org-beautify-theme][Org theme tweaks]] org-beautify-theme  A sub-theme to make org-mode more beautiful.
+
+#+begin_src emacs-lisp
+(use-package org-beautify-theme
+#+begin_src emacs-lisp
+  :defer t
+  :ensure t)
+#+end_src
+
+
+
   org-projectile     20160604.1110 installed             Repository todo management for org-mode
   pkg-info           20150517.443  installed             Information about packages
   popup              20151125.542  installed             Visual Popup User Interface
   pos-tip            20150318.813  installed             Show tooltip at point
   projectile         20160526.832  installed             Manage and navigate projects in Emacs easily
-  pungi              20150222.446  installed             Integrates jedi with virtualenv and buildout python environments
+
   python-environment 20150310.153  installed             virtualenv API for Emacs Lisp
   python-mode        20151210.918  installed             Python major mode
   pythonic           20150730.216  installed             Utility functions for writing pythonic emacs package.
