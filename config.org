@@ -226,39 +226,6 @@ For any packages that are not built in
   :defer t
   :ensure t)
 #+end_src
-       
-** elpy
-
-[[https://elpy.readthedocs.io/en/latest/index.html][Emacs Python Development Environment]]
-
-The following are required outside of emacs using python installer pip
-
-Either of these:
-
-  pip install rope
-  pip install jedi
-
-flake8 for code checks:
-
-  pip install flake8
-
-importmagic for automatic imports:
-
-  pip install importmagic
-
-and autopep8 for automatic PEP8 formatting:
-
-  pip install autopep8
-
-and yapf for code formatting:
-
-  pip install yapf
-
-#+begin_src emacs-lisp
-(use-package elpy
-  :defer t
-  :ensure t)
-#+end_src
 ** Flycheck-pyflakes
 
 [[https://github.com/Wilfred/flycheck-pyflakes][flycheck-pyflakes]] provides support pyflakes in flycheck 
@@ -446,7 +413,117 @@ It is inspired by libraries of other environments and concurrent programing mode
   :ensure t)
 #+end_src
 
-** jedi
+** let-alist
+
+[[https://elpa.gnu.org/packages/let-alist.html][let-alist]] Easily let-bind values of an assoc-list by their names
+
+#+begin_src emacs-lisp
+(use-package let-alist
+  :defer t
+  :ensure t)
+#+end_src
+
+** org mode extras
+
+[[https://github.com/jonnay/org-beautify-theme][Org theme tweaks]] org-beautify-theme  A sub-theme to make org-mode more beautiful.
+
+#+begin_src emacs-lisp
+(use-package org-beautify-theme
+  :defer t
+  :ensure t)
+#+end_src
+
+[[https://github.com/IvanMalison/org-projectile][org-projectile]] provides functions for the creation of org-mode TODOs that are associated with projectile projects.
+
+#+begin_src emacs-lisp
+(use-package org-projectile
+  :bind (("C-c n p" . org-projectile:project-todo-completing-read)
+         ("C-c c" . org-capture))
+  :config
+  (progn
+    (setq org-projectile:projects-file 
+          "/your/path/to/an/org/file/for/storing/projects.org")
+    (setq org-agenda-files (append org-agenda-files (org-projectile:todo-files)))
+    (add-to-list 'org-capture-templates (org-projectile:project-todo-entry "p")))
+  :ensure t)
+#+end_src
+
+** Package Information
+
+[[https://github.com/lunaryorn/pkg-info.el][pkg-info]] Information about packages
+
+#+begin_src emacs-lisp
+(use-package pkg-info
+  :defer t
+  :ensure t)
+#+end_src
+ 
+** Popup tooltips
+
+[[https://github.com/auto-complete/popup-el][popup]] is a visual popup user interface library for Emacs. This provides a basic API and common UI widgets such as popup tooltips and popup menus.
+
+#+begin_src emacs-lisp
+(use-package popup
+  :ensure t)
+#+end_src
+
+[[https://www.emacswiki.org/emacs/PosTip][pos-tip]] The standard library tooltip.el provides the function for displaying a tooltip at mouse position which allows users to easily show it. However, locating tooltip at arbitrary buffer position in window is not easy. This program provides such function to be used by other frontend programs.
+
+#+begin_src emacs-lisp
+(use-package pos-tip
+  :defer t
+  :ensure t)
+#+end_src
+
+** Projectile
+
+[[https://www.emacswiki.org/emacs/Projectile][projectile]] is a project interaction library for Emacs. Its goal is to provide a nice set of features operating on a project level without introducing external dependencies. For instance - finding project files is done in pure Emacs Lisp without the use of GNU find.
+
+Projectile also tries to be practical - if some external tools could speed up some task substantially and the tools are available, Projectile will leverage them.
+
+#+begin_src emacs-lisp
+(use-package projectile
+  :defer t
+  :ensure t)
+#+end_src
+
+** Python
+       
+
+*** elpy
+
+[[https://elpy.readthedocs.io/en/latest/index.html][Emacs Python Development Environment]]
+
+The following are required outside of emacs using python installer pip
+
+Either of these:
+
+  pip install rope
+  pip install jedi
+
+flake8 for code checks:
+
+  pip install flake8
+
+importmagic for automatic imports:
+
+  pip install importmagic
+
+and autopep8 for automatic PEP8 formatting:
+
+  pip install autopep8
+
+and yapf for code formatting:
+
+  pip install yapf
+
+#+begin_src emacs-lisp
+(use-package elpy
+  :defer t
+  :ensure t)
+#+end_src
+
+*** jedi
 
 [[https://github.com/tkf/emacs-jedi][jedi]] Jedi.el is a Python auto-completion package for Emacs. It aims at helping your Python coding in a non-destructive way. It also helps you to find information about Python objects, such as docstring, function arguments and code location.
 
@@ -490,39 +567,13 @@ company-jedi
    :ensure t)
  #+end_src
 
-** let-alist
-
-[[https://elpa.gnu.org/packages/let-alist.html][let-alist]] Easily let-bind values of an assoc-list by their names
-
-#+begin_src emacs-lisp
-(use-package let-alist
-  :defer t
-  :ensure t)
-#+end_src
-
-** org mode extras
-
-[[https://github.com/jonnay/org-beautify-theme][Org theme tweaks]] org-beautify-theme  A sub-theme to make org-mode more beautiful.
-
-#+begin_src emacs-lisp
-(use-package org-beautify-theme
-#+begin_src emacs-lisp
-  :defer t
-  :ensure t)
-#+end_src
-
-
-
-  org-projectile     20160604.1110 installed             Repository todo management for org-mode
-  pkg-info           20150517.443  installed             Information about packages
-  popup              20151125.542  installed             Visual Popup User Interface
-  pos-tip            20150318.813  installed             Show tooltip at point
-  projectile         20160526.832  installed             Manage and navigate projects in Emacs easily
-
+*** move this
   python-environment 20150310.153  installed             virtualenv API for Emacs Lisp
   python-mode        20151210.918  installed             Python major mode
   pythonic           20150730.216  installed             Utility functions for writing pythonic emacs package.
   pyvenv             20151105.1519 installed             Python virtual environment interface
+
+** rest not python
   r-autoyas          20140101.710  installed             Provides automatically created yasnippets for R function argument lists.
   s                  20150924.406  installed             The long lost Emacs string manipulation library.
   seq                20151121.1017 installed             Sequence manipulation functions
