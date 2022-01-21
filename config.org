@@ -19,6 +19,23 @@ This file is written in org mode and takes advantage of org babel to strip away 
 #+end_src
 
 * Emacs init and tangling this file
+
+
+** Templates to speed up editing
+
+This will add templates for source blocks in org files '<el' TAB will create an elisp source block
+
+#+begin_src emacs-lisp
+
+(require 'org-tempo)
+
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+
+#+end_src
+
+
 ** Init file
 
 Init.el is always loaded by emacs.  Emacs expects elisp code at a minimum the following should be saved into a sepparate file and saved as init.el in the home directory ~\ or something similar to; C:\Users\xxxx\AppData\Roaming\.emacs.d on a windows machine.
